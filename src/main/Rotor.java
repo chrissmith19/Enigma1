@@ -65,7 +65,7 @@ public class Rotor {
         add("h");
     }};
 
-    int startPosition = 0;
+    int startPosition;
     int rotorNotch = 0;
 
     public void setStartPosition(int startPosition) {
@@ -83,34 +83,12 @@ public class Rotor {
         startPosition+=1;
     }
 
-    public String encodeLetter(String letter) {
-        startPosition += 1;
-        String encodedLetter = valueList.get(keyList.indexOf(letter) + startPosition).toString();
-        return encodedLetter;
+    public String encypherLetter(String letter){
+        return valueList.get(keyList.indexOf(letter) + startPosition).toString();
     }
 
-    public String decodeLetter(String letter) {
-        startPosition += 1;
-        String decodedLetter = keyList.get(valueList.indexOf(letter) - startPosition).toString();
-        return decodedLetter;
-    }
-
-    public String encodeWord(String word) {
-        String encodedWord="";
-        for (int i = 0; i < word.length(); i++) {
-            String encodedLetter = encodeLetter(String.valueOf(word.charAt(i)));
-            encodedWord+=encodedLetter;
-        }
-        return encodedWord;
-    }
-
-    public String decodeWord(String word) {
-        String decodedWord="";
-        for (int i = 0; i < word.length(); i++) {
-            String decodedLetter = decodeLetter(String.valueOf(word.charAt(i)));
-            decodedWord+=decodedLetter;
-        }
-        return decodedWord;
+    public String decypherLetter(String letter){
+        return keyList.get(valueList.indexOf(letter) - startPosition).toString();
     }
 
 }
