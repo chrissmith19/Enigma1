@@ -97,6 +97,22 @@ public class RotorManagerTest {
 
         Assert.assertEquals("cat",encodedWord);
     }
-//encoding/decoding long strings and with a large offset
 
+    @Test
+    public void largeOffSet() {
+        RotorManager rotor = new RotorManager(24);
+        String encodedLetterFirst = rotor.encodeLetter("a");
+        String encodedLetterSecond = rotor.encodeLetter("a");
+
+        Assert.assertEquals("h",encodedLetterFirst);
+        Assert.assertEquals("j",encodedLetterSecond);
+    }
+
+    @Test
+    public void longStringEncryption() {
+        RotorManager rotor = new RotorManager(0);
+        String encodedword = rotor.encodeWord("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        Assert.assertEquals("gdqoxuscamifrvtpnewkblzyhjg".toLowerCase(),encodedword);
+    }
 }

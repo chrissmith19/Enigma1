@@ -80,7 +80,7 @@ public class Rotor {
     }
 
     public void incrementRotor(){
-        startPosition+=1;
+            startPosition = (startPosition + 1) % 26;
     }
 
     public String encypherLetter(String letter){
