@@ -3,21 +3,37 @@ package main;
 public class RotorManager {
 
     private int startPosition;
-    private Rotor rotor;
+    private Rotor rightRotor;
+    private Rotor middleRotor;
+    private int numberOfLetters=0;
 
-    public RotorManager(int startPosition){
-        this.startPosition=startPosition;
-        this.rotor=new Rotor(startPosition);
+    public RotorManager(int rightRotorStartPosition, int middleRotorStartPosition){
+        this.startPosition=rightRotorStartPosition;
+        this.rightRotor =new Rotor(rightRotorStartPosition);
+        this.middleRotor =new Rotor(middleRotorStartPosition);
+    }
+    public RotorManager(int rightRotorStartPosition){
+        this.startPosition=rightRotorStartPosition;
+        this.rightRotor =new Rotor(rightRotorStartPosition);
     }
 
     public String encodeLetter(String letter) {
-        rotor.incrementRotor();
-        return rotor.encypherLetter(letter);
+        numberOfLetters+=1;
+        rightRotor.incrementRotor();
+//        incrementMiddleRotor();
+        return rightRotor.encypherLetter(letter);
     }
 
     public String decodeLetter(String letter) {
-        rotor.incrementRotor();
-        return rotor.decypherLetter(letter);
+        rightRotor.incrementRotor();
+//        incrementMiddleRotor();
+        return rightRotor.decypherLetter(letter);
+    }
+
+    private void incrementMiddleRotor(){
+        if(numberOfLetters%26==0){
+            middleRotor.incrementRotor();
+        }
     }
 
     public String encodeWord(String word) {

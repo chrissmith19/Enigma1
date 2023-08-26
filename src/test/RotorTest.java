@@ -39,4 +39,5 @@ public class RotorTest {
         Assert.assertEquals("b",decodedLetterFirst);
     }
 
+    //increment rotor test
 }
