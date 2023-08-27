@@ -35,7 +35,8 @@ public class Rotor {
         add("z");
     }};
     //        abcdefghijklmnopqrstuvwxyz
-//        JGDQOXUSCAMIFRVTPNEWKBLZYH
+//            jgdqoxuscamifrvtpnewkblzyh
+
     ArrayList valueList = new ArrayList() {{
         add("j");
         add("g");
@@ -84,11 +85,45 @@ public class Rotor {
     }
 
     public String encypherLetter(String letter){
-        return valueList.get(keyList.indexOf(letter) + startPosition).toString();
+        return valueList.get((keyList.indexOf(letter) + startPosition)%26).toString();
     }
 
     public String decypherLetter(String letter){
-        return keyList.get(valueList.indexOf(letter) - startPosition).toString();
+        if(valueList.indexOf(letter) >= startPosition) {
+            return keyList.get((valueList.indexOf(letter) - startPosition)).toString();
+        }
+        else{
+            return keyList.get(26- Math.abs(valueList.indexOf(letter)-startPosition)).toString();
+        }
     }
 
+    //        abcdefghijklmnopqrstuvwxyz
+//            jgdqoxuscamifrvtpnewkblzyh
+
+    //    default 0 offset
+//            0123456789  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+    //        abcdefghij  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+//            jgdqoxusca  m  i  f  r  v  t  p  n  e  w  k  b  l  z  y  h
+
+//    2 offset gear 1 + 1 increment
+//            0123456789  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+    //        abcdefghij  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+//            qoxuscamif  r  v  t  p  n  e  w  k  b  l  z  y  h  j  g  d
+
+    //    2 offset gear 1 + 2 increment
+//            0123456789  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+    //        abcdefghij  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+//            oxuscamifr  v  t  p  n  e  w  k  b  l  z  y  h  j  g  d  q
+
+    //    2 offset gear 1 + 3 increment
+//            0123456789  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+    //        abcdefghij  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+//            xuscamifrv  t  p  n  e  w  k  b  l  z  y  h  j  g  d  q  o
+
+//    2 offset gear 2
+//            0123456789  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+    //        abcdefghij  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+//            dqoxuscami  f  r  v  t  p  n  e  w  k  b  l  z  y  h  j  g
+//    hpj
+//    c
 }

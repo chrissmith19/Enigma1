@@ -6,11 +6,13 @@ public class RotorManager {
     private Rotor rightRotor;
     private Rotor middleRotor;
     private int numberOfLetters=0;
+    private int numberOfRotors=1;
 
     public RotorManager(int rightRotorStartPosition, int middleRotorStartPosition){
         this.startPosition=rightRotorStartPosition;
         this.rightRotor =new Rotor(rightRotorStartPosition);
         this.middleRotor =new Rotor(middleRotorStartPosition);
+        this.numberOfRotors= 2;
     }
     public RotorManager(int rightRotorStartPosition){
         this.startPosition=rightRotorStartPosition;
@@ -21,13 +23,29 @@ public class RotorManager {
         numberOfLetters+=1;
         rightRotor.incrementRotor();
 //        incrementMiddleRotor();
-        return rightRotor.encypherLetter(letter);
+        return encypherLetter(letter);
+    }
+
+    private String encypherLetter(String letter){
+
+        if(this.numberOfRotors>1){
+            return middleRotor.encypherLetter(rightRotor.encypherLetter(letter));
+        }
+        else return rightRotor.encypherLetter(letter);
     }
 
     public String decodeLetter(String letter) {
         rightRotor.incrementRotor();
 //        incrementMiddleRotor();
-        return rightRotor.decypherLetter(letter);
+        return decypherLetter(letter);
+    }
+
+    private String decypherLetter(String letter){
+
+        if(this.numberOfRotors>1){
+            return rightRotor.decypherLetter(middleRotor.decypherLetter(letter));
+        }
+        else return rightRotor.decypherLetter(letter);
     }
 
     private void incrementMiddleRotor(){

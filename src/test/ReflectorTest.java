@@ -34,7 +34,8 @@ public class ReflectorTest {
 
     @Test
     public void testEnum(){
-        System.out.print(RotorValues.rotor1.toString());
+        System.out.println(RotorValues.rotor1.toString());
+        System.out.println(Math.abs(0-2));
     }
 
     @Test
