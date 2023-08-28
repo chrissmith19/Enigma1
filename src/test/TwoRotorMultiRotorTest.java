@@ -5,7 +5,7 @@ import main.RotorManager;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RotorMultiRotorTest {
+public class TwoRotorMultiRotorTest {
 
     @Test
     public void encodeTwoRotorsOneLetter() {
