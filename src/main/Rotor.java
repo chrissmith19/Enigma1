@@ -69,31 +69,34 @@ public class Rotor {
     int startPosition;
     int rotorNotch = 0;
 
-    public void setStartPosition(int startPosition) {
-        this.startPosition = startPosition;
+    public void setRotorNotch(int rotorNotch) {
+        this.rotorNotch = rotorNotch;
     }
 
-    public Rotor() {
+    public boolean doesStartPositionMatchRotorNotch(){
+        if(rotorNotch==startPosition){
+            return true;
+        }
+        else return false;
     }
 
     public Rotor(int startingPosition) {
         startPosition = startingPosition;
     }
 
-    public void incrementRotor(){
-            startPosition = (startPosition + 1) % 26;
+    public void incrementRotor() {
+        startPosition = (startPosition + 1) % 26;
     }
 
-    public String encypherLetter(String letter){
-        return valueList.get((keyList.indexOf(letter) + startPosition)%26).toString();
+    public String encypherLetter(String letter) {
+        return valueList.get((keyList.indexOf(letter) + startPosition) % 26).toString();
     }
 
-    public String decypherLetter(String letter){
-        if(valueList.indexOf(letter) >= startPosition) {
+    public String decypherLetter(String letter) {
+        if (valueList.indexOf(letter) >= startPosition) {
             return keyList.get((valueList.indexOf(letter) - startPosition)).toString();
-        }
-        else{
-            return keyList.get(26- Math.abs(valueList.indexOf(letter)-startPosition)).toString();
+        } else {
+            return keyList.get(26 - Math.abs(valueList.indexOf(letter) - startPosition)).toString();
         }
     }
 

@@ -5,7 +5,6 @@ public class RotorManager {
     private int startPosition;
     private Rotor rightRotor;
     private Rotor middleRotor;
-    private int numberOfLetters=0;
     private int numberOfRotors=1;
 
     public RotorManager(int rightRotorStartPosition, int middleRotorStartPosition){
@@ -20,9 +19,8 @@ public class RotorManager {
     }
 
     public String encodeLetter(String letter) {
-        numberOfLetters+=1;
         rightRotor.incrementRotor();
-//        incrementMiddleRotor();
+        if(middleRotor!=null){incrementMiddleRotor();};
         return encypherLetter(letter);
     }
 
@@ -36,7 +34,7 @@ public class RotorManager {
 
     public String decodeLetter(String letter) {
         rightRotor.incrementRotor();
-//        incrementMiddleRotor();
+        incrementMiddleRotor();
         return decypherLetter(letter);
     }
 
@@ -49,9 +47,17 @@ public class RotorManager {
     }
 
     private void incrementMiddleRotor(){
-        if(numberOfLetters%26==0){
+        if (rightRotor.doesStartPositionMatchRotorNotch()) {
             middleRotor.incrementRotor();
         }
+    }
+
+    public void setRightRotor(Rotor rightRotor) {
+        this.rightRotor = rightRotor;
+    }
+
+    public void setMiddleRotor(Rotor middleRotor) {
+        this.middleRotor = middleRotor;
     }
 
     public String encodeWord(String word) {

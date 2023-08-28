@@ -116,6 +116,18 @@ public class RotorMultiRotorTest {
         RotorManager rotor = new RotorManager(0,0);
         String decodedWord = rotor.encodeWord("aaaaaaaaaaaaaaaaaaaaaaaaaa");
 
-        Assert.assertEquals("uqpvzkedjfcxnbwtrolmgihysa", decodedWord);
+        Assert.assertEquals("uqpvzkedjfcxnbwtrolmgihysm", decodedWord);
+    }
+
+    @Test
+    public void decodeTwoRotorsWordEncodeWithOffSetLongAndNotchNotInMiddle() {
+        RotorManager rotorManager = new RotorManager(0,0);
+        Rotor rotor= new Rotor(0);
+        rotor.setRotorNotch(25);
+        rotorManager.setRightRotor(rotor);
+
+        String decodedWord = rotorManager.encodeWord("aaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        Assert.assertEquals("uqpvzkedjfcxnbwtrolmgihycm", decodedWord);
     }
 }
