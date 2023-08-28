@@ -130,4 +130,37 @@ public class ThreeRotorMultiRotorTest {
 
         Assert.assertEquals("kptbhmoqaxdzrglwnvifucsydf", decodedWord);
     }
+
+    @Test
+    public void decodeThreeRotorsWordEncodeWithOffSetLongAndNotchNotInMiddleFormiddleRotor() {
+        RotorManager rotorManager = new RotorManager(0,0,0);
+        Rotor middleRotor= new Rotor(0);
+        middleRotor.setRotorNotch(1);
+        rotorManager.setMiddleRotor(middleRotor);
+        Rotor rightRotor= new Rotor(0);
+        rightRotor.setRotorNotch(2);
+        rotorManager.setRightRotor(rightRotor);
+
+        String decodedWord = rotorManager.encodeWord("aaa");
+
+        Assert.assertEquals("ktv", decodedWord);
+    }
+
+    @Test
+    public void decodeThreeRotorsWordEncodeWithOffSetLongAndNotchNotInMiddleFormiddleRotor2() {
+        RotorManager rotorManager = new RotorManager(0,0,0);
+        Rotor leftRotor= new Rotor(1);
+        leftRotor.setRotorNotch(2);
+        rotorManager.setLeftRotor(leftRotor);
+        Rotor middleRotor= new Rotor(0);
+        middleRotor.setRotorNotch(1);
+        rotorManager.setMiddleRotor(middleRotor);
+        Rotor rightRotor= new Rotor(0);
+        rightRotor.setRotorNotch(2);
+        rotorManager.setRightRotor(rightRotor);
+
+        String decodedWord = rotorManager.encodeWord("aaa");
+
+        Assert.assertEquals("bpt", decodedWord);
+    }
 }

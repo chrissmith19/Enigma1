@@ -4,6 +4,11 @@ public class RotorManager {
 
     private Rotor rightRotor;
     private Rotor middleRotor;
+
+    public void setLeftRotor(Rotor leftRotor) {
+        this.leftRotor = leftRotor;
+    }
+
     private Rotor leftRotor;
 
 
